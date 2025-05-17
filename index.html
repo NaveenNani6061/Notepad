@@ -63,9 +63,17 @@
       this.style.justifyContent = 'center';
     });
     
-    // Force scroll to center when focused
+    // Remove placeholder when focused and force scroll to center
     textarea.addEventListener('focus', function() {
+      this.setAttribute('placeholder', '');
       this.scrollTop = this.scrollHeight/2 - this.clientHeight/2;
+    });
+    
+    // Restore placeholder if empty when blurred
+    textarea.addEventListener('blur', function() {
+      if (this.value === '') {
+        this.setAttribute('placeholder', 'Start typing...');
+      }
     });
   </script>
 </body>
