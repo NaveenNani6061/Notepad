@@ -8,6 +8,20 @@
     html, body {
       height: 100%;
       margin: 0;
+      background-color: #f5f5f5;
+    }
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .text-container {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: auto;
     }
     textarea {
       width: 100%;
@@ -16,13 +30,43 @@
       border: none;
       outline: none;
       resize: none;
-      font-family: monospace;
-      font-size: 1rem;
+      font-family: Arial, sans-serif;
+      font-size: 1.5rem;
+      font-weight: bold;
       box-sizing: border-box;
+      background-color: white;
+      text-align: center;
+      /* Center content vertically */
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    textarea::placeholder {
+      color: #aaa;
+      font-size: 2rem;
+      /* Center placeholder */
+      text-align: center;
+      margin-top: -50vh;
     }
   </style>
 </head>
 <body>
-  <textarea placeholder="Start typing..."></textarea>
+  <div class="text-container">
+    <textarea placeholder="Start typing..."></textarea>
+  </div>
+
+  <script>
+    const textarea = document.querySelector('textarea');
+    
+    // Maintain vertical centering while typing
+    textarea.addEventListener('input', function() {
+      this.style.justifyContent = 'center';
+    });
+    
+    // Force scroll to center when focused
+    textarea.addEventListener('focus', function() {
+      this.scrollTop = this.scrollHeight/2 - this.clientHeight/2;
+    });
+  </script>
 </body>
 </html>
